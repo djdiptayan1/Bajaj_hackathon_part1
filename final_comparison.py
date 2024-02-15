@@ -2,7 +2,7 @@ import json
 from difflib import SequenceMatcher
 
 def calculate_similarity(keywords1, keywords2):
-    # Convert keywords to sets for efficient comparison
+
     set1 = set(keywords1)
     set2 = set(keywords2)
     # Calculate Jaccard similarity
@@ -11,16 +11,16 @@ def calculate_similarity(keywords1, keywords2):
     return intersection / union if union != 0 else 0
 
 def extract_keywords_from_link(link):
-    # Split the link by '/' and take the last part
+
     last_part = link.split('/')[-1]
-    # Extract keywords separated by '-'
+
     return last_part.split('-')
 
 def read_links_from_json(json_file):
     try:
         with open(json_file, 'r') as f:
             data = json.load(f)
-            # Debug print
+
             return data 
     except FileNotFoundError:
         print(f"File '{json_file}' not found.")
@@ -47,9 +47,8 @@ def find_most_similar_links(desired_link, other_links):
         top_5_links.append(link)
     return top_5_links
 
-# Example usage
 desired_link = "https://bajajfinserv.in/loans/personal-loan/marriage-loan.html"
-json_file = "filtered_links101.json"  # Replace with the path to your JSON file containing the links
+json_file = "filtered_links101.json" 
 
 other_links = read_links_from_json(json_file)
 
